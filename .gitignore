@@ -9,6 +9,9 @@ __pycache__/
 # Roadmap database 
 database/roadmap.db
 
+# Telegram session
+client/my_account.session
+client/my_account.session-journal
 
 # Distribution / packaging
 .Python
