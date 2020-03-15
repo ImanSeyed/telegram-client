@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# Roadmap database 
+database/roadmap.db
+
+
 # Distribution / packaging
 .Python
 build/
