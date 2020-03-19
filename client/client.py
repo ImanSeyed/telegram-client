@@ -1,33 +1,28 @@
 from pyrogram import Client, Filters
-import sqlite3
+import json
 
 # User Authorization
 app = Client("my_account")
 
-db_admin = sqlite3.connect("../database/admin.db", check_same_thread=False)
+with open("messages.json") as file:
+    messages = file.read()
 
-def get_command_text(conn, command):
-    cursor = conn.cursor()
-    query = cursor.execute('SELECT message FROM commands WHERE command IS "%s"' % command)
-    for row in query:
-        text = ' '.join(row)
-    return text
+data = json.loads(messages)
 
 # admin's Commands 
-def exec_admin_command(conn, command):
+def exec_admin_command(command):
     @app.on_message(
             Filters.command(command, "!") &
             Filters.me)
     def do(client, message):
-        text = get_command_text(conn, command)
         app.send_message(
                 message.chat.id, 
-                text,
+                text=data[command],
                 reply_to_message_id=message.reply_to_message.message_id
                 )
 
-commands = db_admin.execute('SELECT command FROM commands')
-for row in commands:
-    exec_admin_command(db_admin, row[0])
+commands =  data.keys()
+for command in commands:
+    exec_admin_command(command)
 
 app.run()
