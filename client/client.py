@@ -15,11 +15,12 @@ def exec_admin_command(command):
             Filters.command(command, "!") &
             Filters.me)
     def do(client, message):
-        app.send_message(
-                message.chat.id, 
-                text=data[command],
-                reply_to_message_id=message.reply_to_message.message_id
-                )
+        app.edit_message_text(
+            message.chat.id,
+            message.message_id,
+            data[command]
+        )
+
 
 commands =  data.keys()
 for command in commands:
