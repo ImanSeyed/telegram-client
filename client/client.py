@@ -49,9 +49,9 @@ def spam(client, message):
     Filters.me)
 def google(client, message):
     text = message.command[1:]
-    google_it = "http://google.com/search?q=" + '+'.join(text)
+    query_text = "http://google.com/search?q=" + '+'.join(text)
     edited_message = """Let me 🔎 Google that for you:
-🔎 [{}]({})""".format(' '.join(text), google_it) 
+🔎 [{}]({})""".format(' '.join(text), query_text) 
     app.edit_message_text(
         message.chat.id,
         message.message_id,
