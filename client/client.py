@@ -12,7 +12,7 @@ with open("messages.json") as file:
 
 data = json.loads(messages)
 
-# admin's Commands 
+# Commands of admin
 def exec_admin_command(command):
     @app.on_message(
             Filters.command(command, "!") &
@@ -23,6 +23,11 @@ def exec_admin_command(command):
             message.message_id,
             data[command]
         )
+
+# Making handler for all commands of admin
+commands =  data.keys()
+for command in commands:
+    exec_admin_command(command)
 
 # Spam
 @app.on_message(
@@ -46,7 +51,7 @@ def google(client, message):
     text = message.command[1:]
     google_it = "http://google.com/search?q=" + '+'.join(text)
     edited_message = """Let me 🔎 Google that for you:
-🔎[{}]({})""".format(' '.join(text), google_it) 
+🔎 [{}]({})""".format(' '.join(text), google_it) 
     app.edit_message_text(
         message.chat.id,
         message.message_id,
@@ -54,8 +59,5 @@ def google(client, message):
         disable_web_page_preview=True
     )
 
-commands =  data.keys()
-for command in commands:
-    exec_admin_command(command)
 
 app.run()
