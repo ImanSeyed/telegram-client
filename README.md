@@ -18,13 +18,13 @@ $ cd client && python client.py
 ## Commands
 | Command | Description |
 | --- | --- |
-| !g <search> | LMGTFY |
+| !g search | LMGTFY |
 | !smart | Show ubuntu wiki for asking smart question |
 | !ask | Show **DON'T ask to ask** text |
 | !flood | Warn to stop flooding |
 | !paste | Ask for using CentOS pastebin instead of picture or long text |
 | !farsi | Ask for send message in persian |
-| !spam <num> <text> | Send <text> for <num> times |
+| !spam num text | Send text for num times |
 
 ## Add command and message
 There is no obstacle for adding new command. Just edit `messages.json`. 
