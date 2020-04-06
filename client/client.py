@@ -1,5 +1,6 @@
 from pyrogram import Client, Filters
 from pyrogram.errors import FloodWait
+from googletrans import Translator
 import json
 import time 
 
@@ -16,9 +17,10 @@ data = json.loads(messages)
 def exec_admin_command(command):
     @app.on_message(
             Filters.command(command, "!") &
-            Filters.me)
+            Filters.me
+            )
     def do(client, message):
-        app.edit_message_text(
+        client.edit_message_text(
             message.chat.id,
             message.message_id,
             data[command]
@@ -32,11 +34,12 @@ for command in commands:
 # Spam
 @app.on_message(
     Filters.command("spam", "!") &
-    Filters.me)
+    Filters.me
+    )
 def spam(client, message):
     try:
         for _ in range(int(message.command[1])):
-            app.send_message(
+            client.send_message(
                 message.chat.id,
                 ' '.join(message.command[2:])
             )
@@ -46,18 +49,34 @@ def spam(client, message):
 # Let me google it for you!
 @app.on_message(
     Filters.command("g", "!") &
-    Filters.me)
+    Filters.me
+    )
 def google(client, message):
     text = message.command[1:]
     query_text = "http://google.com/search?q=" + '+'.join(text)
     edited_message = """Let me 🔎 Google that for you:
 🔎 [{}]({})""".format(' '.join(text), query_text) 
-    app.edit_message_text(
+    client.edit_message_text(
         message.chat.id,
         message.message_id,
         edited_message,
         disable_web_page_preview=True
     )
+
+@app.on_message(
+        Filters.command("translate", "!") &
+        Filters.me
+        )
+def translate(client, message):
+    translator = Translator()
+    client.edit_message_text(
+            message.chat.id,
+            message.message_id,
+            translator.translate(
+                message.reply_to_message.text, 
+                dest=message.command[1]).text,
+            disable_web_page_preview=True
+        )
 
 
 app.run()
