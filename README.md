@@ -19,6 +19,7 @@ $ cd client && python client.py
 | Command | Description |
 | --- | --- |
 | !g search | LMGTFY |
+| !translate lang | Translate replied text to 'lang' language |
 | !smart | Show ubuntu wiki for asking smart question |
 | !ask | Show **DON'T ask to ask** text |
 | !flood | Warn to stop flooding |
