@@ -3,7 +3,7 @@ from pyrogram.errors import FloodWait
 from googletrans import Translator
 import json
 import time 
-
+import threading 
 
 # User Authorization
 app = Client("my_account")
@@ -45,6 +45,18 @@ def spam(client, message):
             )
     except FloodWait as e:
         time.sleep(e.x)
+
+# Check client is up or down
+@app.on_message(
+        Filters.command("ping", "!") &
+        Filters.me
+        )
+def ping(client, message):
+    client.edit_message_text(
+            message.chat.id,
+            message.message_id,
+            "**pong!**"
+            )
 
 # Let me google it for you!
 @app.on_message(
