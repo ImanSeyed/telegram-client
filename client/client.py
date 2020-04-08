@@ -3,7 +3,6 @@ from pyrogram.errors import FloodWait
 from googletrans import Translator
 import json
 import time 
-import threading 
 
 # User Authorization
 app = Client("my_account")
