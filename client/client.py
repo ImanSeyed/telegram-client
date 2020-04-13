@@ -12,8 +12,8 @@ with open("messages.json") as file:
 
 data = json.loads(messages)
 
-# Commands of admin
-def exec_admin_command(command):
+# JSON messages 
+def handler(command):
     @app.on_message(
             Filters.command(command, "!") &
             Filters.me
@@ -25,12 +25,24 @@ def exec_admin_command(command):
             data[command]
         )
 
-# Making handler for all commands of admin
+# Making handler for all commands that depend on JSON file 
 commands =  data.keys()
 for command in commands:
-    exec_admin_command(command)
+    handler(command)
 
-# Spam
+# Kick the member that repiled to 
+@app.on_message(
+        Filters.command("kick", "!") &
+        Filters.me
+        )
+def kick(client, message):
+    client.kick_chat_member(
+            message.chat.id,
+            message.reply_to_message.from_user.id
+            )
+
+
+# Spam <num> <text>
 @app.on_message(
     Filters.command("spam", "!") &
     Filters.me
@@ -45,7 +57,7 @@ def spam(client, message):
     except FloodWait as e:
         time.sleep(e.x)
 
-# Check client is up or down
+# Check client is up or down (Ping/Pong)
 @app.on_message(
         Filters.command("ping", "!") &
         Filters.me
@@ -57,7 +69,7 @@ def ping(client, message):
             "**pong!**"
             )
 
-# Let me google it for you!
+# Let me google it for you
 @app.on_message(
     Filters.command("g", "!") &
     Filters.me
@@ -74,6 +86,7 @@ def google(client, message):
         disable_web_page_preview=True
     )
 
+# Google translate
 @app.on_message(
         Filters.command("translate", "!") &
         Filters.me
