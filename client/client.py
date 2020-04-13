@@ -40,6 +40,15 @@ def kick(client, message):
             message.chat.id,
             message.reply_to_message.from_user.id
             )
+    remove_message = "[{}](tg://user?id={}) **banned**.".format(
+            message.reply_to_message.from_user.first_name,
+            message.reply_to_message.from_user.id
+            )
+    client.edit_message_text(
+            message.chat.id,
+            message.message_id,
+            remove_message
+            )
 
 
 # Spam <num> <text>
