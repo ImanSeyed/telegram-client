@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+#coding=utf-8
+
 from pyrogram import Client, Filters
 from pyrogram.errors import FloodWait
 from googletrans import Translator
