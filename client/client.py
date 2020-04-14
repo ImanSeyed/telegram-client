@@ -112,4 +112,20 @@ def translate(client, message):
         )
 
 
+@app.on_message(
+        Filters.command("haxor", "!") &
+        Filters.me
+        )
+def haxor(client, message):
+    text = ' '.join(message.command[1:])
+    current = ""
+    for i in text:
+        current = current + i
+        client.edit_message_text(
+                message.chat.id,
+                message.message_id,
+                current + "|"
+                )
+        time.sleep(0.1)
+    
 app.run()
