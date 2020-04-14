@@ -137,5 +137,19 @@ def haxor(client, message):
             text
             )
 
-    
+
+@app.on_message(
+        Filters.command("del", "!") &
+        Filters.me
+        )
+def delete(client, message):
+    limit = int(message.command[1])
+    messages = client.get_history(message.chat.id, limit)
+    for i in range(0, limit):
+        client.delete_messages(
+                chat_id = message.chat.id, 
+                message_ids = messages[i].message_id
+                )
+
+
 app.run()
