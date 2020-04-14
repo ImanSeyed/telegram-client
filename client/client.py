@@ -131,11 +131,11 @@ def haxor(client, message):
                 )
         time.sleep(0.2)
         
-        client.edit_message_text(
-                message.chat.id,
-                message.message_id,
-                text
-                )
+    client.edit_message_text(
+            message.chat.id,
+            message.message_id,
+            text
+            )
 
     
 app.run()
