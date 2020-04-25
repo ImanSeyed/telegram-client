@@ -94,10 +94,15 @@ def google(client, message):
     client.edit_message_text(
         message.chat.id,
         message.message_id,
+        "`google.com`",
+        disable_web_page_preview=True
+    )
+    client.edit_message_text(
+        message.chat.id,
+        message.message_id,
         edited_message,
         disable_web_page_preview=True
     )
-
 # Google translate
 @app.on_message(
         Filters.command("translate", "!") &
