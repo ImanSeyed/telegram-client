@@ -23,11 +23,6 @@ $ python3 client.py
 | !g search | LMGTFY |
 | !kick | Kick the user that you replied to |
 | !translate lang | Translate replied text to 'lang' language |
-| !smart | Show ubuntu wiki for asking smart question |
-| !ask | Show **Don't ask to ask, just ask** text |
-| !flood | Warn to stop flooding |
-| !paste | Ask for using CentOS pastebin instead of picture or long text |
-| !farsi | Ask for send message in persian |
 | !spam num text | Send text for num times |
 
 ## Add command and message
