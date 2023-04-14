@@ -2,7 +2,7 @@ pyaes==1.6.1
 Pyrogram==0.16.0
 PySocks==1.7.0
 TgCrypto==1.2.0
-certifi==2020.4.5.1
+certifi==2022.12.7
 chardet==3.0.4
 googletrans==2.4.0
 idna==2.9
